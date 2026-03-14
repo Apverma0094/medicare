@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project Details - Medicine Store</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.6;margin:24px;color:#111}
+    h1,h2,h3{color:#1a202c}
+    pre{background:#f3f4f6;padding:12px;border-radius:6px;overflow:auto}
+    section{margin-bottom:20px}
+  </style>
+</head>
+<body>
+  <h1>Medicine Store — Project Details</h1>
+
+  <section>
+    <h2>Chhota sa intro</h2>
+    <p>Yeh file aapke Laravel project ka structure, request lifecycle, aur commonly used dev commands Hindi mein samjhati hai. Aapke workspace ke files aur folders ke references bhi diye gaye hain.</p>
+  </section>
+
+  <section>
+    <h2>1) Top-level files / folders aur unka kaam</h2>
+    <ul>
+      <li><strong>artisan</strong> — Laravel CLI executable (php artisan ...).</li>
+      <li><strong>composer.json</strong> — PHP dependencies & autoload config.</li>
+      <li><strong>package.json</strong>, <strong>vite.config.js</strong> — frontend build (Vite).</li>
+      <li><strong>public/</strong> — webroot; entry point: <code>public/index.php</code>.</li>
+      <li><strong>bootstrap/</strong> — bootstrapping files; <code>bootstrap/app.php</code> creates the app instance.</li>
+      <li><strong>app/</strong> — application core (Controllers, Models, Providers).</li>
+      <li><strong>config/</strong> — configuration files.</li>
+      <li><strong>database/</strong> — migrations, factories, seeders.</li>
+      <li><strong>resources/</strong> — Blade views and frontend source (css/js).</li>
+      <li><strong>routes/</strong> — route definitions (web.php, console.php).</li>
+      <li><strong>storage/</strong> — logs, compiled views, uploaded files (writable hona chahiye).</li>
+      <li><strong>vendor/</strong> — Composer dependencies (framework, libraries).</li>
+      <li><strong>tests/</strong> — PHPUnit tests (Feature, Unit).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>2) Request lifecycle — step-by-step</h2>
+    <ol>
+      <li>Browser → Server → <code>public/index.php</code> (autoload + bootstrap/app.php).</li>
+      <li><code>bootstrap/app.php</code> — Laravel application instance banata hai.</li>
+      <li>HTTP Kernel (<code>app/Http/Kernel.php</code>) middleware stack ko chalata hai.</li>
+      <li>Routes (<code>routes/web.php</code>) match hote hain; controller action call hota hai.</li>
+      <li>Controller (<code>app/Http/Controllers/*</code>) business logic: validate, call models/services, return view/JSON.</li>
+      <li>Models (<code>app/Models/*</code>) Eloquent ke through DB queries karte hain.</li>
+      <li>Views (<code>resources/views/*.blade.php</code>) Blade templates compile hote hain aur response return hota hai.</li>
+      <li>Response → Kernel → <code>public/index.php</code> → Browser.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>3) Project-specific mapping (aapke repo se)</h2>
+    <ul>
+      <li><code>app/Models/Medicine.php</code> — Medicine Eloquent model.</li>
+      <li><code>app/Models/User.php</code> — User model.</li>
+      <li><code>database/migrations/2025_11_10_133733_create_medicines_table.php</code> — medicines table schema.</li>
+      <li><code>resources/views/dashboard.blade.php</code> — dashboard view (current file).</li>
+      <li><code>resources/views/medicines/</code> — medicines related blade files (list/show/create/edit) — agar maujood hon.</li>
+      <li><code>routes/web.php</code> — check yahan ke routes for medicines mapping.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4) Common developer workflows (PowerShell-ready)</h2>
+    <p>Yeh commands PowerShell ke liye hain. Copy-paste karein:</p>
+    <pre>composer install
+npm install
+npm run dev
+php artisan serve
+php artisan migrate
+php artisan db:seed
+php artisan test
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+php artisan cache:clear</pre>
+  </section>
+
+  <section>
+    <h2>5) Contract (input/output) aur edge-cases</h2>
+    <p><strong>Contract (controller action):</strong></p>
+    <ul>
+      <li>Input: HTTP Request (params, body, auth)</li>
+      <li>Output: Blade view with data OR JSON</li>
+      <li>Error modes: validation errors (422), auth (401/403), DB errors (500)</li>
+    </ul>
+    <p><strong>Edge cases:</strong> missing <code>.env</code>, wrong DB creds, storage permissions, CSRF on forms, large queries (use pagination).</p>
+  </section>
+
+  <section>
+    <h2>6) Next steps (aap choose karein)</h2>
+    <ul>
+      <li>Exact medicines flow map karna: main <code>routes/web.php</code>, controllers, aur views open karke controller→model→view mapping bana dunga.</li>
+      <li>Per-file inline comments add karna (blade, controller, model).</li>
+      <li>UML/flow diagram ya README update karna.</li>
+    </ul>
+    <p>Batayein kaunsa option chahiye — main turant woh kaam shuru kar dunga.</p>
+  </section>
+
+</body>
+</html>
